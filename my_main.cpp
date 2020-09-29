@@ -1,59 +1,35 @@
 #include<cstdio>
 #include<iostream>
 #include<string>
+#include"myFunction.h"
 
-using namespace std;
-
-int n;
-
-void general(int n, int l, int r, int& num, string res)
-{
-    if (r == n)
-    {
-        num++;
-        // cout << res << endl;  // 输出“（）” 删除 res
-        return;
-    }
-    if (l == r)
-    {
-        l++;
-        res = res + '(';
-        general(n, l, r, num, res);
-    }
-    else
-    {
-        if (l != n)
-        {
-            l++;
-            res = res + '(';
-            general(n, l, r, num, res);
-
-            res.pop_back();
-            l--;
-            r++;
-            res = res + ')';
-            general(n, l, r, num, res);
-        }
-        else
-        {
-            r++;
-            res = res + ')';
-            general(n, l, r, num, res);
-        }
-    }
-    return;
-}
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
 
 int main()
 {
+    int n;
     string str;
     int num;
 
+    cout << "输入括号对数：" << endl;
+
     while (cin >> n )
     {
+        if (n <= 0) {
+            break;
+        }
+
         num = 0;
         general(n, 0, 0, num, str);
+
         printf("%d\n", num);
+
+        cout << "\n 输入括号对数：" << endl;
+
     }
+
     return 0;
 }
